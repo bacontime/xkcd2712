@@ -41,6 +41,9 @@ function addPlanet(name,x1,y1,x2,y2){
     filename = 'https://aeromancer.dev/xkcd_2712/' + name + '.png'
     const image = L.imageOverlay(filename, [[-y1,x1], [-y2, x2]]).addTo(map);
 }
+function addMaw(x1,y1,x2,y2){
+    const image = L.imageOverlay('maw_transparent.webp', [[-y1,x1], [-y2, x2]]).addTo(map);
+}
 
 addPlanet('b612', 4196, -8424, 6244, -6376)
 addPlanet('dogplanet', 1456, -23484, 3504, -21436)
@@ -50,20 +53,7 @@ addPlanet('europa', 22264, 984, 30456, 9176)
 addPlanet('goodhart', -30696, 2424, -22504, 10616)
 addPlanet('greatattractor', -596048, 247952, -591952, 252048)
 addPlanet('japanmoon', -12884, 10576, -10836, 12624)
-addPlanet('maw1', -64176, 17130, -62128, 19178)
-addPlanet('maw2', -61446, 16638, -59398, 18686)
-addPlanet('maw3', -56974, 15508, -54926, 17556)
-addPlanet('maw4', -60116, 14918, -58068, 16966)
-addPlanet('maw5', -60606, 14238, -58558, 16286)
-addPlanet('maw6', -59680, 14126, -57632, 16174)
-addPlanet('maw7', -60424, 13828, -58376, 15876)
-addPlanet('maw8', -59354, 13296, -57306, 15344)
-addPlanet('maw9', -62568, 12796, -60520, 14844)
-addPlanet('maw10', -60056, 11618, -58008, 13666)
 addPlanet('maw11', -59786, 11472, -57738, 13520)
-addPlanet('maw12', -54688, 10832, -52640, 12880)
-addPlanet('maw13', -64510, 8424, -62462, 10472)
-addPlanet('maw14', -53166, 20624, -51118, 22672)
 addPlanet('nojapan', -16384, 10676, -14336, 12724)
 addPlanet('origin', -2048, -2048, 2048, 2048)
 addPlanet('outside', -8192, 20808, 8192, 37192)
@@ -76,6 +66,22 @@ addPlanet('roads', 18288, 14828, 34672, 31212)
 addPlanet('soupiter', -18048, 16032, -13952, 20128)
 addPlanet('steerswoman', -72188, 2952, -68092, 7048)
 addPlanet('sun', -38092, -32352, -21708, -15968)
+    
+    
+addMaw(-64176, 17130, -62128, 19178)
+addMaw(-61446, 16638, -59398, 18686)
+addMaw(-56974, 15508, -54926, 17556)
+addMaw(-60116, 14918, -58068, 16966)
+addMaw(-60606, 14238, -58558, 16286)
+addMaw(-59680, 14126, -57632, 16174)
+addMaw(-60424, 13828, -58376, 15876)
+addMaw(-59354, 13296, -57306, 15344)
+addMaw(-62568, 12796, -60520, 14844)
+addMaw(-60056, 11618, -58008, 13666)
+addMaw(-59786, 11472, -57738, 13520)
+addMaw(-54688, 10832, -52640, 12880)
+addMaw(-64510, 8424, -62462, 10472)
+addMaw(-53166, 20624, -51118, 22672)
 
 </script>
 </body>
