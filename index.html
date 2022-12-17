@@ -38,11 +38,11 @@ const map = L.map('map', {
 map.attributionControl.addAttribution('Images taken from <a href="https://xkcd.com/2712/">XKCD 2717</a>, CC BY-NC 2.5 Randall Munroe');
 
 function addPlanet(name,x1,y1,x2,y2){
-    filename = 'https://aeromancer.dev/xkcd_2712/' + name + '.png'
+    filename = 'img/'+ name + '.webp'
     const image = L.imageOverlay(filename, [[-y1,x1], [-y2, x2]]).addTo(map);
 }
 function addMaw(x1,y1,x2,y2){
-    const image = L.imageOverlay('maw_transparent.webp', [[-y1,x1], [-y2, x2]]).addTo(map);
+    const image = L.imageOverlay('img/maw_transparent.webp', [[-y1,x1], [-y2, x2]]).addTo(map);
 }
 
 addPlanet('b612', 4196, -8424, 6244, -6376)
@@ -53,7 +53,6 @@ addPlanet('europa', 22264, 984, 30456, 9176)
 addPlanet('goodhart', -30696, 2424, -22504, 10616)
 addPlanet('greatattractor', -596048, 247952, -591952, 252048)
 addPlanet('japanmoon', -12884, 10576, -10836, 12624)
-addPlanet('maw11', -59786, 11472, -57738, 13520)
 addPlanet('nojapan', -16384, 10676, -14336, 12724)
 addPlanet('origin', -2048, -2048, 2048, 2048)
 addPlanet('outside', -8192, 20808, 8192, 37192)
@@ -66,8 +65,8 @@ addPlanet('roads', 18288, 14828, 34672, 31212)
 addPlanet('soupiter', -18048, 16032, -13952, 20128)
 addPlanet('steerswoman', -72188, 2952, -68092, 7048)
 addPlanet('sun', -38092, -32352, -21708, -15968)
-    
-    
+
+addPlanet('maw11', -59786, 11472, -57738, 13520)
 addMaw(-64176, 17130, -62128, 19178)
 addMaw(-61446, 16638, -59398, 18686)
 addMaw(-56974, 15508, -54926, 17556)
@@ -78,7 +77,6 @@ addMaw(-60424, 13828, -58376, 15876)
 addMaw(-59354, 13296, -57306, 15344)
 addMaw(-62568, 12796, -60520, 14844)
 addMaw(-60056, 11618, -58008, 13666)
-addMaw(-59786, 11472, -57738, 13520)
 addMaw(-54688, 10832, -52640, 12880)
 addMaw(-64510, 8424, -62462, 10472)
 addMaw(-53166, 20624, -51118, 22672)
