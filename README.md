@@ -4,7 +4,6 @@ This is a static, zoomable version of [XKCD 2712](https://xkcd.com/2712/) using 
 
 I don't do anything clever with redefining the tile server or anything. 
 I just load up all the images as imageOverlay objects. 
-This is really not the optimal way to do things.
 
-All images referenced are [CC BY NC 2.5](https://creativecommons.org/licenses/by-nc/2.5/) by Randall Munroe.
+All images are [CC BY NC 2.5](https://creativecommons.org/licenses/by-nc/2.5/) by Randall Munroe.
 
