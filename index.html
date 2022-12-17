@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>XKCD 2712, Static and Zoomable</title>
+    <title>xkcd 2712, Static and Zoomable</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
     integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
     crossorigin=""/>
@@ -35,7 +35,7 @@ const map = L.map('map', {
     maxZoom: 0,
     center: [1500, 0],
 });
-map.attributionControl.addAttribution('Based on <a href="https://xkcd.com/2712/">XKCD 2717: Gravity</a>. Images CC BY-NC 2.5 Randall Munroe.');
+map.attributionControl.addAttribution('Based on <a href="https://xkcd.com/2712/">xkcd 2717: Gravity</a>. Images CC BY-NC 2.5 Randall Munroe.');
 
 function addPlanet(name,x1,y1,x2,y2){
     filename = 'img/'+ name + '.webp'
