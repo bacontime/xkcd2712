@@ -33,17 +33,36 @@ const map = L.map('map', {
 });
 map.attributionControl.addAttribution('Based on <a href="https://xkcd.com/2712/">xkcd 2717: Gravity</a>. Images CC BY-NC 2.5 Randall Munroe.');
 
-var planetMarkerList = [];
-function addPlanet(name,x1,y1,x2,y2, info=''){
+
+//---------------------------------------------------------------------------------------------------
+
+function addPlanetImage(name,x1,y1,x2,y2){
     filename = 'img/'+ name + '.webp'
     const image = L.imageOverlay(filename, [[-y1,x1], [-y2, x2]]).addTo(map);
-    //Now add a label to the planet as well.
-    popupInfo = "<center><b>"+name+"</b></center>";
-    newMarker = L.marker([-(y1+y2)/2,(x1+x2)/2]).bindPopup(popupInfo);
+}
+var collisionList = [];
+function addCollision(name,x1,y1,x2,y2){
+    filename = 'collision/'+ name + '.webp'
+    newImage = L.imageOverlay(filename, [[-y1,x1], [-y2, x2]]).addTo(map);
+    newImage.setOpacity(0.5);
+    collisionList.push(newImage);
+}
+var planetMarkerList = [];
+function addPlanetMarker(name,x,y, info=''){
+    popupInfo = "<center><b>"+name+"</b><br>"+info+"</center>";
+    newMarker = L.marker([-y,x]).bindPopup(popupInfo);
     planetMarkerList.push(newMarker);
 }
-function addMaw(x1,y1,x2,y2){
-    const image = L.imageOverlay('img/maw_transparent.webp', [[-y1,x1], [-y2, x2]]).addTo(map);
+
+
+function addPlanet(name,x1,y1,x2,y2, info=''){
+    addPlanetImage(name,x1,y1,x2,y2);
+    addCollision(name,x1,y1,x2,y2);
+    addPlanetMarker(name, (x1+x2)/2, (y1+y2)/2, info=info);
+}
+function addMaw(name, x1,y1,x2,y2){
+    addPlanetImage('maw_transparent',x1,y1,x2,y2);
+    addCollision(name,x1,y1,x2,y2);
 }
 
 addPlanet('b612', 4196, -8424, 6244, -6376)
@@ -69,56 +88,24 @@ addPlanet('sun', -38092, -32352, -21708, -15968)
 
 //Only Maw11 is *really* different, 
 //By reusing a single maw image, we can cut down the total image set size by half
-addPlanet('maw11', -59786, 11472, -57738, 13520)
-addMaw(-64176, 17130, -62128, 19178)
-addMaw(-61446, 16638, -59398, 18686)
-addMaw(-56974, 15508, -54926, 17556)
-addMaw(-60116, 14918, -58068, 16966)
-addMaw(-60606, 14238, -58558, 16286)
-addMaw(-59680, 14126, -57632, 16174)
-addMaw(-60424, 13828, -58376, 15876)
-addMaw(-59354, 13296, -57306, 15344)
-addMaw(-62568, 12796, -60520, 14844)
-addMaw(-60056, 11618, -58008, 13666)
-addMaw(-54688, 10832, -52640, 12880)
-addMaw(-64510, 8424, -62462, 10472)
-addMaw(-53166, 20624, -51118, 22672)
+addPlanetImage('maw11', -59786, 11472, -57738, 13520)
+addCollision('maw11', -59786, 11472, -57738, 13520)
+addMaw('maw1',-64176, 17130, -62128, 19178)
+addMaw('maw2',-61446, 16638, -59398, 18686)
+addMaw('maw3',-56974, 15508, -54926, 17556)
+addMaw('maw4',-60116, 14918, -58068, 16966)
+addMaw('maw5',-60606, 14238, -58558, 16286)
+addMaw('maw6',-59680, 14126, -57632, 16174)
+addMaw('maw7',-60424, 13828, -58376, 15876)
+addMaw('maw8',-59354, 13296, -57306, 15344)
+addMaw('maw9',-62568, 12796, -60520, 14844)
+addMaw('maw10',-60056, 11618, -58008, 13666)
+addMaw('maw12',-54688, 10832, -52640, 12880)
+addMaw('maw13',-64510, 8424, -62462, 10472)
+addMaw('maw14',-53166, 20624, -51118, 22672)
 
-
-
-
-//---------------------------------------------------------------------------------------------------
-// Add collision overlays. The black holes are not currently included.
-
-var collisionList = [];
-function addCollision(name,x1,y1,x2,y2){
-    filename = 'collision/'+ name + '.webp'
-    newImage = L.imageOverlay(filename, [[-y1,x1], [-y2, x2]]).addTo(map);
-    newImage.setOpacity(0.5);
-    collisionList.push(newImage);
-}
-
-addCollision('b612', 4196, -8424, 6244, -6376)
-addCollision('dogplanet', 1456, -23484, 3504, -21436)
-addCollision('earth', 20528, -36912, 36912, -20528)
-addCollision('enterprise', 996, -61904, 3044, -59856)
-addCollision('europa', 22264, 984, 30456, 9176)
-addCollision('goodhart', -30696, 2424, -22504, 10616)
-addCollision('greatattractor', -596048, 247952, -591952, 252048)
-addCollision('japanmoon', -12884, 10576, -10836, 12624)
-addCollision('nojapan', -16384, 10676, -14336, 12724)
-addCollision('origin', -2048, -2048, 2048, 2048)
-addCollision('outside', -8192, 20808, 8192, 37192)
-addCollision('peeler', -19564, -2264, -17516, -216)
-addCollision('pigeons', -19064, 3956, -17016, 6004)
-addCollision('present', 44616, 36816, 46664, 38864)
-addCollision('qwantz', 20072, -51788, 24168, -47692)
-addCollision('remnant', 37192, -9648, 41288, -5552)
-addCollision('roads', 18288, 14828, 34672, 31212)
-addCollision('soupiter', -18048, 16032, -13952, 20128)
-addCollision('steerswoman', -72188, 2952, -68092, 7048)
-addCollision('sun', -38092, -32352, -21708, -15968)
-
+addPlanetMarker('maw', -57000,14000, info="A cluster of 14 black holes. Don't fret; you can't get sucked in.")
+addPlanetMarker('light mode',1500,-200000, info="If you click this button, the colors are inverted.")
 
 //---------------------------------------------------------------------------------------------------
 // Collectable orbs or coins or whatever they be called.
@@ -147,7 +134,7 @@ addCoin('soccerball',15293*2,11140*-2, 'Transforms the ship into a big soccer ba
     // https://leafletjs.com/examples/layers-control/
     var collisions =  L.layerGroup(collisionList).addTo(map);
     var planetMarkers =  L.layerGroup(planetMarkerList);
-    var coinMarkers =  L.layerGroup(coinMarkerList)
+    var coinMarkers =  L.layerGroup(coinMarkerList);
     var overlayMaps = {"Solid Surfaces":collisions, "Planet Markers":planetMarkers, "Collectable Markers":coinMarkers};
     var baseMaps = {};
     var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
