@@ -121,10 +121,34 @@ addCollision('sun', -38092, -32352, -21708, -15968)
 
 
 //---------------------------------------------------------------------------------------------------
+// Collectable orbs or coins or whatever they be called.
+
+//var coinIcon = L.icon({iconUrl: 'img/coin.png', iconSize:[20, 20],  popupAnchor:[0, 0],});
+
+var coinMarkerList = [];
+
+function addCoin(name,x,y, info){
+    //Add image
+    filename = 'img/'+ name + '.webp'
+    const image = L.imageOverlay('img/coin.png', [[-y,x], [-y+20, x+20]]).addTo(map);
+    //Add marker
+    popupInfo = "<center><b>"+name+"</b><br>"+info+"</center>";
+    //newMarker = L.marker([-y,x], {icon: coinIcon}).bindPopup(popupInfo);
+    newMarker = L.circleMarker([-y+10,x+10], {color: '#d9ae2f', fillColor: '#f1bf15'}).bindPopup(popupInfo);
+    coinMarkerList.push(newMarker);
+}
+
+addCoin('cannonball',359*2,-815*-2, 'Transforms the ship into an alternate, retro, design.')
+addCoin('figure',-15050*2,-2984*-2, 'Transforms the ship into a little stickman astronaut.')
+addCoin('regular',-29976*2,-8077*-2, 'Reverts the ship to its original design.')
+addCoin('soccerball',15293*2,11140*-2, 'Transforms the ship into a big soccer ball.')
+
+//---------------------------------------------------------------------------------------------------
     // https://leafletjs.com/examples/layers-control/
     var collisions =  L.layerGroup(collisionList).addTo(map);
     var planetMarkers =  L.layerGroup(planetMarkerList);
-    var overlayMaps = {"Solid Surfaces":collisions, "Planet Markers":planetMarkers};
+    var coinMarkers =  L.layerGroup(coinMarkerList)
+    var overlayMaps = {"Solid Surfaces":collisions, "Planet Markers":planetMarkers, "Collectable Markers":coinMarkers};
     var baseMaps = {};
     var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
 
