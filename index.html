@@ -78,6 +78,45 @@ addMaw(-60056, 11618, -58008, 13666)
 addMaw(-54688, 10832, -52640, 12880)
 addMaw(-64510, 8424, -62462, 10472)
 addMaw(-53166, 20624, -51118, 22672)
+//---------------------------------------------------------------------------------------------------
+
+
+var collisionList = [];
+function addCollision(name,x1,y1,x2,y2){
+    filename = 'collision/'+ name + '.webp'
+    newImage = L.imageOverlay(filename, [[-y1,x1], [-y2, x2]]).addTo(map);
+    newImage.setOpacity(0.5);
+    collisionList.push(newImage);
+}
+
+addCollision('b612', 4196, -8424, 6244, -6376)
+addCollision('dogplanet', 1456, -23484, 3504, -21436)
+addCollision('earth', 20528, -36912, 36912, -20528)
+addCollision('enterprise', 996, -61904, 3044, -59856)
+addCollision('europa', 22264, 984, 30456, 9176)
+addCollision('goodhart', -30696, 2424, -22504, 10616)
+addCollision('greatattractor', -596048, 247952, -591952, 252048)
+addCollision('japanmoon', -12884, 10576, -10836, 12624)
+addCollision('nojapan', -16384, 10676, -14336, 12724)
+addCollision('origin', -2048, -2048, 2048, 2048)
+addCollision('outside', -8192, 20808, 8192, 37192)
+addCollision('peeler', -19564, -2264, -17516, -216)
+addCollision('pigeons', -19064, 3956, -17016, 6004)
+addCollision('present', 44616, 36816, 46664, 38864)
+addCollision('qwantz', 20072, -51788, 24168, -47692)
+addCollision('remnant', 37192, -9648, 41288, -5552)
+addCollision('roads', 18288, 14828, 34672, 31212)
+addCollision('soupiter', -18048, 16032, -13952, 20128)
+addCollision('steerswoman', -72188, 2952, -68092, 7048)
+addCollision('sun', -38092, -32352, -21708, -15968)
+
+
+//---------------------------------------------------------------------------------------------------
+    // https://leafletjs.com/examples/layers-control/
+    var collisions =  L.layerGroup(collisionList).addTo(map);
+    var overlayMaps = {"Solid Surfaces":collisions,};
+    var baseMaps = {};
+    var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
 
 </script>
 </body>
