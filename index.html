@@ -53,6 +53,12 @@ function addPlanetMarker(name,x,y, info=''){
     newMarker = L.marker([-y,x]).bindPopup(popupInfo);
     planetMarkerList.push(newMarker);
 }
+var poiMarkerList = [];
+function addPoiMarker(name,x,y, info=''){
+    popupInfo = "<center><b>"+name+"</b><br>"+info+"</center>";
+    newMarker = L.marker([-y,x]).bindPopup(popupInfo);
+    poiMarkerList.push(newMarker);
+}
 
 
 function addPlanet(name,x1,y1,x2,y2, info=''){
@@ -105,8 +111,13 @@ addMaw('maw13',-64510, 8424, -62462, 10472)
 addMaw('maw14',-53166, 20624, -51118, 22672)
 
 addPlanetMarker('maw', -57000,14000, info="A cluster of 14 black holes. Don't fret; you can't get sucked in.")
-addPlanetMarker('light mode',1500,-200000, info="If you click this button, the colors are inverted.")
 addPlanetMarker('edge of the universe', 5000, 24000, info='The edge of the universe, along with a parallel bubble universe.')
+
+//---------------------------------------------------------------------------------------------------
+// Locations with special effects
+
+addPoiMarker('light mode',1500,-200000, info="If you click this button, the colors are inverted.")
+addPoiMarker('framerate drop',31680,-34700, info="If you move in this area, the game begins to stutter")
 
 //---------------------------------------------------------------------------------------------------
 // Collectable orbs or coins or whatever they be called.
@@ -136,7 +147,8 @@ addCoin('soccerball',15293*2,11140*-2, 'Transforms the ship into a big soccer ba
     var collisions =  L.layerGroup(collisionList).addTo(map);
     var planetMarkers =  L.layerGroup(planetMarkerList);
     var coinMarkers =  L.layerGroup(coinMarkerList);
-    var overlayMaps = {"Solid Surfaces":collisions, "Planet Markers":planetMarkers, "Collectable Markers":coinMarkers};
+    var poiMarkers =  L.layerGroup(poiMarkerList);
+    var overlayMaps = {"Solid Surfaces":collisions, "Planet Markers":planetMarkers, "Special POIs":poiMarkers, "Collectable Markers":coinMarkers};
     var baseMaps = {};
     var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
 
