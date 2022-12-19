@@ -33,9 +33,14 @@ const map = L.map('map', {
 });
 map.attributionControl.addAttribution('Based on <a href="https://xkcd.com/2712/">xkcd 2717: Gravity</a>. Images CC BY-NC 2.5 Randall Munroe.');
 
-function addPlanet(name,x1,y1,x2,y2){
+var planetMarkerList = [];
+function addPlanet(name,x1,y1,x2,y2, info=''){
     filename = 'img/'+ name + '.webp'
     const image = L.imageOverlay(filename, [[-y1,x1], [-y2, x2]]).addTo(map);
+    //Now add a label to the planet as well.
+    popupInfo = "<center><b>"+name+"</b></center>";
+    newMarker = L.marker([-(y1+y2)/2,(x1+x2)/2]).bindPopup(popupInfo);
+    planetMarkerList.push(newMarker);
 }
 function addMaw(x1,y1,x2,y2){
     const image = L.imageOverlay('img/maw_transparent.webp', [[-y1,x1], [-y2, x2]]).addTo(map);
@@ -78,8 +83,12 @@ addMaw(-60056, 11618, -58008, 13666)
 addMaw(-54688, 10832, -52640, 12880)
 addMaw(-64510, 8424, -62462, 10472)
 addMaw(-53166, 20624, -51118, 22672)
-//---------------------------------------------------------------------------------------------------
 
+
+
+
+//---------------------------------------------------------------------------------------------------
+// Add collision overlays. The black holes are not currently included.
 
 var collisionList = [];
 function addCollision(name,x1,y1,x2,y2){
@@ -114,7 +123,8 @@ addCollision('sun', -38092, -32352, -21708, -15968)
 //---------------------------------------------------------------------------------------------------
     // https://leafletjs.com/examples/layers-control/
     var collisions =  L.layerGroup(collisionList).addTo(map);
-    var overlayMaps = {"Solid Surfaces":collisions,};
+    var planetMarkers =  L.layerGroup(planetMarkerList);
+    var overlayMaps = {"Solid Surfaces":collisions, "Planet Markers":planetMarkers};
     var baseMaps = {};
     var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
 
