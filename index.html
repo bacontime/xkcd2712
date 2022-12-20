@@ -53,12 +53,6 @@ function addPlanetMarker(name,x,y, info=''){
     newMarker = L.marker([-y,x]).bindPopup(popupInfo);
     planetMarkerList.push(newMarker);
 }
-var poiMarkerList = [];
-function addPoiMarker(name,x,y, info=''){
-    popupInfo = "<center><b>"+name+"</b><br>"+info+"</center>";
-    newMarker = L.marker([-y,x]).bindPopup(popupInfo);
-    poiMarkerList.push(newMarker);
-}
 
 
 function addPlanet(name,x1,y1,x2,y2, info=''){
@@ -115,6 +109,15 @@ addPlanetMarker('edge of the universe', 5000, 24000, info='The edge of the unive
 
 //---------------------------------------------------------------------------------------------------
 // Locations with special effects
+
+var poiIcon = L.icon({iconUrl: 'img/poiMarker.png', iconSize:[25, 41], iconAnchor:[12, 41], popupAnchor:[1, -34],});
+
+var poiMarkerList = [];
+function addPoiMarker(name,x,y, info=''){
+    popupInfo = "<center><b>"+name+"</b><br>"+info+"</center>";
+    newMarker = L.marker([-y,x], {icon: poiIcon}).bindPopup(popupInfo);
+    poiMarkerList.push(newMarker);
+}
 
 addPoiMarker('light mode',1500,-200000, info="If you click this button, the colors are inverted.")
 addPoiMarker('framerate drop',31680,-34700, info="If you move in this area, the game begins to stutter")
